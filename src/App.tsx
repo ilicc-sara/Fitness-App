@@ -9,7 +9,7 @@ function App() {
         <img src="./logo.png" alt="gym-logo" className="h-16 object-cover" />
       </nav> */}
       <section className="text-left grid grid-cols-2 w-7xl !mx-auto !my-8 items-center">
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 relative">
           <img src="./logo.png" alt="gym-logo" className="h-18 w-28" />
           <h2 className="text-blue-500 text-3xl font-bold">Fitness Club</h2>
           <h1 className="text-5xl font-semibold leading-15">
@@ -19,6 +19,9 @@ function App() {
           <button className="bg-indigo-900 !py-2 !px-3 text-white w-[fit-content]">
             Explore Exercises
           </button>
+          <h1 className="text-[170px] font-bold text-[#ddd] tracking-[40px] absolute -z-1 -bottom-[70%]">
+            Exercise
+          </h1>
         </div>
         <div>
           <img src="./home-image.png" className="rounded" />
