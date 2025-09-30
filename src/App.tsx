@@ -2,6 +2,20 @@ import { useState } from "react";
 
 import "./App.css";
 
+const workoutCategories = [
+  "all",
+  "back",
+  "cardio",
+  "chest",
+  "lower arms",
+  "lower legs",
+  "neck",
+  "shoulders",
+  "upper arms",
+  "upper legs",
+  "waist",
+];
+
 function App() {
   return (
     <>
@@ -19,8 +33,8 @@ function App() {
           <button className="bg-indigo-900 !py-2 !px-3 text-white w-[fit-content]">
             Explore Exercises
           </button>
-          <h1 className="text-[170px] font-bold text-[#ddd] tracking-[40px] absolute -z-1 -bottom-[70%]">
-            Exercise
+          <h1 className=" text-[170px] font-bold text-[#ddd] tracking-[40px] absolute -z-1 -bottom-[70%]">
+            Excercise
           </h1>
         </div>
         <div>
@@ -40,9 +54,12 @@ function App() {
         </div>
 
         <div className="flex">
-          <div>
-            <img className="h-12 " src="./gym-icon.png" />
-          </div>
+          {workoutCategories.map((category, index) => (
+            <div key={index}>
+              <img className="h-12 " src="./gym-icon.png" />
+              <p>{category}</p>
+            </div>
+          ))}
         </div>
       </section>
     </>
