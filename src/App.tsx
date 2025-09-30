@@ -27,6 +27,22 @@ function App() {
           <img src="./home-image.png" className="rounded" />
         </div>
       </section>
+
+      <section>
+        <div>
+          <h1>Awesome Exercises You Should Know</h1>
+          <div>
+            <input placeholder="Search Exercises" />
+            <button>Search</button>
+          </div>
+        </div>
+
+        <div className="flex">
+          <div>
+            <img className="h-12 " src="./gym-icon.png" />
+          </div>
+        </div>
+      </section>
     </>
   );
 }
