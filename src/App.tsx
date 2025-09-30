@@ -28,9 +28,11 @@ function App() {
         </div>
       </section>
 
-      <section>
-        <div>
-          <h1>Awesome Exercises You Should Know</h1>
+      <section className="w-7xl !mx-auto !mt-38 ">
+        <div className="!mx-auto">
+          <h1 className="text-5xl font-medium leading-15">
+            Awesome Exercises You Should Know
+          </h1>
           <div>
             <input placeholder="Search Exercises" />
             <button>Search</button>
