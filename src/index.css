@@ -13,20 +13,3 @@
 body {
   margin-bottom: 5rem;
 }
-
-.shadow-text {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #333;
-  position: relative;
-}
-
-.shadow-text::after {
-  content: attr(data-text); /* kopira tekst */
-  position: absolute;
-  top: 100%; /* senka ispod teksta */
-  left: 0;
-  color: lightgray; /* svetlosiva boja senke */
-  transform: skewX(-45deg) scaleY(0.5);
-  transform-origin: top left;
-}

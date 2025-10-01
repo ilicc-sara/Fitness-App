@@ -98,9 +98,9 @@ function App() {
   // }, []);
   return (
     <>
-      {/* <nav className="shadow-[0px_4px_6px_-2px_rgba(0,0,0,0.1)] !mb-6 !px-7">
+      <nav className="shadow-[0px_4px_6px_-2px_rgba(0,0,0,0.1)] !mb-6 !px-7">
         <img src="./logo.png" alt="gym-logo" className="h-16 object-cover" />
-      </nav> */}
+      </nav>
       <section className="text-left grid grid-cols-2 w-7xl !mx-auto !my-8 items-center">
         <div className="flex flex-col gap-3 relative">
           <img src="./logo.png" alt="gym-logo" className="h-18 w-28" />
