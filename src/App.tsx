@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./App.css";
 
-const workoutCategories = [
+const workoutCategories: string[] = [
   "all",
   "back",
   "cardio",
@@ -17,6 +17,29 @@ const workoutCategories = [
 ];
 
 function App() {
+  useEffect(() => {
+    const fetchPost = async () => {
+      const url: string = "https://exercisedb.p.rapidapi.com/exercises";
+      const options = {
+        method: "GET",
+        headers: {
+          "x-rapidapi-key":
+            "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
+          "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+        },
+      };
+
+      try {
+        const response = await fetch(url, options);
+        const posts = await response.json();
+        console.log(posts);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchPost();
+  }, []);
   return (
     <>
       {/* <nav className="shadow-[0px_4px_6px_-2px_rgba(0,0,0,0.1)] !mb-6 !px-7">
@@ -48,12 +71,15 @@ function App() {
             Awesome Exercises You Should Know
           </h1>
           <div>
-            <input placeholder="Search Exercises" />
+            <input
+              className="border border-gray-300 rounded-md"
+              placeholder="Search Exercises"
+            />
             <button>Search</button>
           </div>
         </div>
 
-        <div className="flex">
+        <div className="flex justify-between">
           {workoutCategories.map((category, index) => (
             <div key={index}>
               <img className="h-12 " src="./gym-icon.png" />
