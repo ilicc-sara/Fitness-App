@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import.meta.env.VITE_RAPID_API_KEY;
 
 import "./App.css";
 
@@ -19,72 +20,72 @@ const workoutCategories: string[] = [
 function App() {
   const [workoutList, setWorkoutList] = useState(null);
 
+  // useEffect(() => {
+  //   const fetchPost = async () => {
+  //     const url: string =
+  //       "https://exercisedb.p.rapidapi.com/exercises/targetList";
+  //     const options = {
+  //       method: "GET",
+  //       headers: {
+  //         "x-rapidapi-key":
+  //           "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
+  //         "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+  //       },
+  //     };
+
+  //     try {
+  //       const response = await fetch(url, options);
+  //       const posts = await response.json();
+  //       console.log(posts);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+
+  //   fetchPost();
+  // }, []);
+
+  // useEffect(() => {
+  //   const fetchPost = async () => {
+  //     const url: string = "https://exercisedb.p.rapidapi.com/exercises";
+  //     const options = {
+  //       method: "GET",
+  //       headers: {
+  //         "x-rapidapi-key":
+  //           "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
+  //         "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+  //       },
+  //     };
+
+  //     try {
+  //       const response = await fetch(url, options);
+  //       const posts = await response.json();
+  //       console.log(posts);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+
+  //   fetchPost();
+  // }, []);
+
   useEffect(() => {
     const fetchPost = async () => {
-      const url: string =
-        "https://exercisedb.p.rapidapi.com/exercises/targetList";
-      const options = {
-        method: "GET",
-        headers: {
-          "x-rapidapi-key":
-            "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
-          "x-rapidapi-host": "exercisedb.p.rapidapi.com",
-        },
-      };
-
-      try {
-        const response = await fetch(url, options);
-        const posts = await response.json();
-        console.log(posts);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchPost();
-  }, []);
-
-  useEffect(() => {
-    const fetchPost = async () => {
-      const url: string = "https://exercisedb.p.rapidapi.com/exercises";
-      const options = {
-        method: "GET",
-        headers: {
-          "x-rapidapi-key":
-            "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
-          "x-rapidapi-host": "exercisedb.p.rapidapi.com",
-        },
-      };
-
-      try {
-        const response = await fetch(url, options);
-        const posts = await response.json();
-        console.log(posts);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchPost();
-  }, []);
-
-  useEffect(() => {
-    const fetchPost = async () => {
-      const url: string =
+      const url =
         "https://youtube-search-and-download.p.rapidapi.com/search?query=assisted%20lying%20leg%20raise%20with%20throw%20down%20exercise";
       const options = {
         method: "GET",
         headers: {
           "x-rapidapi-key":
             "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
-          "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+          "x-rapidapi-host": "youtube-search-and-download.p.rapidapi.com",
         },
       };
 
       try {
         const response = await fetch(url, options);
         const posts = await response.json();
-        console.log(posts);
+        console.log("youtube download", posts);
       } catch (error) {
         console.log(error);
       }
