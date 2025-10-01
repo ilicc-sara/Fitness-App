@@ -17,6 +17,31 @@ const workoutCategories: string[] = [
 ];
 
 function App() {
+  const [workoutList, setWorkoutList] = useState(null);
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      const url: string = "https://exercisedb.p.rapidapi.com/exercises";
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY!,
+          "X-RapidAPI-Host": "example.p.rapidapi.com",
+        },
+      };
+
+      try {
+        const response = await fetch(url, options);
+        const posts = await response.json();
+        console.log(posts);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchPost();
+  }, []);
+
   useEffect(() => {
     const fetchPost = async () => {
       const url: string = "https://exercisedb.p.rapidapi.com/exercises";
