@@ -21,12 +21,14 @@ function App() {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const url: string = "https://exercisedb.p.rapidapi.com/exercises";
+      const url: string =
+        "https://exercisedb.p.rapidapi.com/exercises/targetList";
       const options = {
         method: "GET",
         headers: {
-          "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY!,
-          "X-RapidAPI-Host": "example.p.rapidapi.com",
+          "x-rapidapi-key":
+            "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
+          "x-rapidapi-host": "exercisedb.p.rapidapi.com",
         },
       };
 
@@ -45,6 +47,31 @@ function App() {
   useEffect(() => {
     const fetchPost = async () => {
       const url: string = "https://exercisedb.p.rapidapi.com/exercises";
+      const options = {
+        method: "GET",
+        headers: {
+          "x-rapidapi-key":
+            "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
+          "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+        },
+      };
+
+      try {
+        const response = await fetch(url, options);
+        const posts = await response.json();
+        console.log(posts);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchPost();
+  }, []);
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      const url: string =
+        "https://youtube-search-and-download.p.rapidapi.com/search?query=assisted%20lying%20leg%20raise%20with%20throw%20down%20exercise";
       const options = {
         method: "GET",
         headers: {
@@ -105,6 +132,7 @@ function App() {
         </div>
 
         <div className="flex justify-between">
+          <img src="https://v2.exercisedb.io/image/UFPboDclIZJmJA" />
           {workoutCategories.map((category, index) => (
             <div key={index}>
               <img className="h-12 " src="./gym-icon.png" />
