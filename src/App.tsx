@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import.meta.env.VITE_RAPID_API_KEY;
-
 import "./App.css";
+import Slider from "./Slider";
+import { SLIDE } from "@splidejs/splide";
 
 function App() {
   const [workoutList, setWorkoutList] = useState<string[] | null>(null);
@@ -112,6 +113,8 @@ function App() {
             </div>
           ))}
         </div>
+
+        <Slider />
       </section>
     </>
   );
