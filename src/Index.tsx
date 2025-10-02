@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import.meta.env.VITE_RAPID_API_KEY;
-import "./App.css";
-import Slider from "./Slider";
-import { SLIDE } from "@splidejs/splide";
 
-function App() {
+import Slider from "./Slider";
+
+function Index() {
   const [workoutList, setWorkoutList] = useState<string[] | null>(null);
 
   const [workouts, setWorkouts] = useState<any[] | null>(null);
@@ -71,7 +70,7 @@ function App() {
             Sweat, Smile <br /> And Repeat
           </h1>
           <p>Check out the most effective exercises personalized to you</p>
-          <button className="bg-indigo-900 !py-2 !px-3 text-white w-[fit-content]">
+          <button className="bg-indigo-900 !py-2 !px-3 text-white w-[fit-content] rounded">
             Explore Exercises
           </button>
           <h1 className=" text-[170px] font-bold text-[#ddd] tracking-[40px] absolute -z-1 -bottom-[90%]">
@@ -83,24 +82,32 @@ function App() {
         </div>
       </section>
 
-      <section className="w-7xl !mx-auto !mt-38 ">
+      <section className="w-7xl !mx-auto !mt-38 !py-20 ">
         <div className="!mx-auto">
-          <h1 className="text-5xl font-medium leading-15">
+          <h1 className="text-5xl font-medium leading-15 text-center !mb-18">
             Awesome Exercises You Should Know
           </h1>
-          <div>
+          <div className="!mx-auto w-7xl flex justify-center items-center">
             <input
-              className="border border-gray-300 rounded-md"
+              className="border border-gray-300 rounded-md !pl-3 bg-white !py-3 !px-5 w-[70%]"
               placeholder="Search Exercises"
             />
-            <button>Search</button>
+            <button className="bg-indigo-900 !py-3 !px-5 text-white w-[fit-content] rounded  !-mr-2">
+              Search
+            </button>
           </div>
         </div>
 
         <Slider workoutList={workoutList} />
       </section>
+
+      <section className="w-7xl !mx-auto !mt-38 !py-0 ">
+        <h1 className="text-5xl font-medium leading-15 text-left !mb-18">
+          Showing Results
+        </h1>
+      </section>
     </>
   );
 }
 
-export default App;
+export default Index;

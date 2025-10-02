@@ -1,7 +1,7 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 type WorkoutProps = {
-  workoutList: any[] | null;
+  workoutList: string[] | null;
 };
 
 const Slider = ({ workoutList }: WorkoutProps) => {
