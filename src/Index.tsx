@@ -3,20 +3,18 @@ import.meta.env.VITE_RAPID_API_KEY;
 import Slider from "./Slider";
 import { Link } from "react-router";
 
+const URL = "https://exercisedb.p.rapidapi.com";
+
 function Index() {
   const [workoutList, setWorkoutList] = useState<string[] | null>(null);
 
   const [workouts, setWorkouts] = useState<any[] | null>(null);
-  const [activeWorkouts, setActiveWorkouts] = useState<any[] | null>(null);
 
   const [activeFilter, setActiveFilter] = useState<null | string>(null);
 
-  console.log(activeFilter);
-
   useEffect(() => {
     const fetchPost = async () => {
-      const url: string =
-        "https://exercisedb.p.rapidapi.com/exercises/targetList";
+      const url: string = `${URL}/exercises/bodyPartList`;
       const options = {
         method: "GET",
         headers: {
@@ -30,7 +28,6 @@ function Index() {
         const response = await fetch(url, options);
         const posts = await response.json();
         setWorkoutList(posts);
-        setActiveWorkouts(posts);
       } catch (error) {}
     };
 
@@ -39,7 +36,7 @@ function Index() {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const url: string = "https://exercisedb.p.rapidapi.com/exercises";
+      const url: string = `${URL}/exercises`;
       const options = {
         method: "GET",
         headers: {
@@ -59,6 +56,33 @@ function Index() {
 
     fetchPost();
   }, []);
+
+  useEffect(() => {
+    if (!activeFilter) return;
+
+    const fetchPost = async () => {
+      const url: string = `${URL}/exercises/bodyPart/${activeFilter}`;
+      const options = {
+        method: "GET",
+        headers: {
+          "x-rapidapi-key":
+            "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
+          "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+        },
+      };
+
+      try {
+        const response = await fetch(url, options);
+        const posts = await response.json();
+        console.log("filtered exercises", posts);
+        setWorkouts(posts);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchPost();
+  }, [activeFilter]);
 
   return (
     <>
@@ -119,7 +143,7 @@ function Index() {
                 <div className="flex gap-2 ">
                   <button className="w-[fit-content] !py-1 !px-3 bg-red-200 rounded">
                     {" "}
-                    {workout.bodyPart}{" "}
+                    {workout?.bodyPart}{" "}
                   </button>
                   <button className="w-[fit-content] !py-1 !px-3 bg-yellow-200 rounded">
                     {" "}

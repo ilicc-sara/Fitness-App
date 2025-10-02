@@ -94,28 +94,32 @@ const Slider = ({
           })}
         </div>
       </SplideSlide>
-      <SplideSlide>
-        <div className="flex justify-between !mx-12">
-          {workoutList?.map((category, index) => {
-            if (index > 10 && index <= 14)
-              return (
-                <div
-                  style={{
-                    border: `${
-                      activeFilter === category ? "2px solid red" : "none"
-                    }`,
-                  }}
-                  onClick={() => setActiveFilter(category)}
-                  className="!my-14 flex flex-col items-center justify-center h-48 aspect-square bg-white text-center gap-5 hover:scale-110 transition-transform duration-300"
-                  key={index}
-                >
-                  <img className="h-12 " src="./gym-icon.png" />
-                  <p className="capitalize text-base font-medium">{category}</p>
-                </div>
-              );
-          })}
-        </div>
-      </SplideSlide>
+      {workoutList && workoutList?.length > 10 && (
+        <SplideSlide>
+          <div className="flex justify-between !mx-12">
+            {workoutList?.map((category, index) => {
+              if (index > 10 && index <= 14)
+                return (
+                  <div
+                    style={{
+                      border: `${
+                        activeFilter === category ? "2px solid red" : "none"
+                      }`,
+                    }}
+                    onClick={() => setActiveFilter(category)}
+                    className="!my-14 flex flex-col items-center justify-center h-48 aspect-square bg-white text-center gap-5 hover:scale-110 transition-transform duration-300"
+                    key={index}
+                  >
+                    <img className="h-12 " src="./gym-icon.png" />
+                    <p className="capitalize text-base font-medium">
+                      {category}
+                    </p>
+                  </div>
+                );
+            })}
+          </div>
+        </SplideSlide>
+      )}
     </Splide>
   );
 };
