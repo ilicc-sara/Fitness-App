@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import.meta.env.VITE_RAPID_API_KEY;
-
 import Slider from "./Slider";
 import { Link } from "react-router";
+import Nav from "./layouts/Nav";
 
 function Index() {
   const [workoutList, setWorkoutList] = useState<string[] | null>(null);
@@ -57,9 +57,6 @@ function Index() {
 
   return (
     <>
-      <nav className="shadow-[0px_4px_6px_-2px_rgba(0,0,0,0.1)] !mb-6 !px-7">
-        <img src="./logo.png" alt="gym-logo" className="h-16 object-cover" />
-      </nav>
       <section className="text-left grid grid-cols-2 w-7xl !mx-auto !my-8 items-center">
         <div className="flex flex-col gap-3 relative">
           <h2 className="text-blue-500 text-3xl font-bold">Fitness Club</h2>
