@@ -6,6 +6,8 @@ import "./App.css";
 function App() {
   const [workoutList, setWorkoutList] = useState<string[] | null>(null);
 
+  const [workouts, setWorkouts] = useState<any[] | null>(null);
+
   useEffect(() => {
     const fetchPost = async () => {
       const url: string =
@@ -63,7 +65,6 @@ function App() {
       </nav>
       <section className="text-left grid grid-cols-2 w-7xl !mx-auto !my-8 items-center">
         <div className="flex flex-col gap-3 relative">
-          <img src="./logo.png" alt="gym-logo" className="h-18 w-28" />
           <h2 className="text-blue-500 text-3xl font-bold">Fitness Club</h2>
           <h1 className="text-5xl font-semibold leading-15">
             Sweat, Smile <br /> And Repeat
@@ -72,7 +73,7 @@ function App() {
           <button className="bg-indigo-900 !py-2 !px-3 text-white w-[fit-content]">
             Explore Exercises
           </button>
-          <h1 className=" text-[170px] font-bold text-[#ddd] tracking-[40px] absolute -z-1 -bottom-[70%]">
+          <h1 className=" text-[170px] font-bold text-[#ddd] tracking-[40px] absolute -z-1 -bottom-[90%]">
             Excercise
           </h1>
         </div>
@@ -95,12 +96,15 @@ function App() {
           </div>
         </div>
 
-        <div className="flex justify-between">
-          <img src="https://v2.exercisedb.io/image/UFPboDclIZJmJA" />
+        <div className="grid grid-cols-4 place-items-center">
+          {/* <img src="https://v2.exercisedb.io/image/UFPboDclIZJmJA" /> */}
           {workoutList?.map((category, index) => (
-            <div key={index}>
+            <div
+              className="flex flex-col items-center justify-center h-40 aspect-square bg-white text-center gap-5"
+              key={index}
+            >
               <img className="h-12 " src="./gym-icon.png" />
-              <p>{category}</p>
+              <p className="capitalize text-base font-medium">{category}</p>
             </div>
           ))}
         </div>
