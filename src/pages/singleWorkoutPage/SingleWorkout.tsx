@@ -2,20 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 function SingleWorkout() {
-  type Workout = {
-    bodyPart: string;
-    category: string;
-    description: string;
-    difficulty: string;
-    equipment: string;
-    id: string;
-    name: string;
-    instructions: string[];
-    secondaryMuscles: string[];
-    target: string;
-  };
   const params = useParams();
-  const [workout, setWorkout] = useState<Workout | null>(null);
+  const [workout, setWorkout] = useState<object | null>(null);
 
   useEffect(() => {
     const fetchPost = async () => {

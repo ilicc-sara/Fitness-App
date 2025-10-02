@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import.meta.env.VITE_RAPID_API_KEY;
 import Slider from "./components/Slider";
+import WorkoutsSlider from "./components/WorkoutsSlider";
 import { Link } from "react-router";
 
 const URL = "https://exercisedb.p.rapidapi.com";
@@ -133,8 +134,8 @@ function Index() {
           Showing Results
         </h1>
 
-        <div className="grid grid-cols-3 gap-y-10">
-          {workouts?.map((workout, index) => (
+        {/* <div className="grid grid-cols-3 gap-y-10"> */}
+        {/* {workouts?.map((workout, index) => (
             <Link to={`/workout/${workout.id}`}>
               <div
                 key={index}
@@ -153,8 +154,9 @@ function Index() {
                 <p className="text-lg font-medium"> {workout.name} </p>
               </div>
             </Link>
-          ))}
-        </div>
+          ))} */}
+        <WorkoutsSlider workouts={workouts} />
+        {/* </div> */}
       </section>
     </>
   );
