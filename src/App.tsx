@@ -97,24 +97,7 @@ function App() {
           </div>
         </div>
 
-        <div className="grid grid-cols-4 place-items-center gap-y-4">
-          {/* <img src="https://v2.exercisedb.io/image/UFPboDclIZJmJA" /> */}
-          <div className="flex flex-col items-center justify-center h-40 aspect-square bg-white text-center gap-5 hover:scale-110 transition-transform duration-300">
-            <img className="h-12 " src="./gym-icon.png" />
-            <p className="capitalize text-base font-medium">All</p>
-          </div>
-          {workoutList?.map((category, index) => (
-            <div
-              className="flex flex-col items-center justify-center h-40 aspect-square bg-white text-center gap-5 hover:scale-110 transition-transform duration-300"
-              key={index}
-            >
-              <img className="h-12 " src="./gym-icon.png" />
-              <p className="capitalize text-base font-medium">{category}</p>
-            </div>
-          ))}
-        </div>
-
-        <Slider />
+        <Slider workoutList={workoutList} />
       </section>
     </>
   );
