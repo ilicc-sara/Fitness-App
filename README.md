@@ -73,3 +73,26 @@ export default defineConfig([
 ```
 
  <img src="./logo.png" alt="gym-logo" className="h-18 w-28" />
+
+useEffect(() => {
+const fetchPost = async () => {
+const url = "https://muscle-group-image-generator.p.rapidapi.com";
+const options = {
+method: "GET",
+headers: {
+"x-rapidapi-key":
+"df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
+"x-rapidapi-host": "muscle-group-image-generator.p.rapidapi.com",
+},
+};
+
+      try {
+        const response = await fetch(url, options);
+        const posts = await response.json();
+        console.log("image generator", posts);
+      } catch (error) {}
+    };
+
+    fetchPost();
+
+}, []);

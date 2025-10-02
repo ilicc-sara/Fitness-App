@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import.meta.env.VITE_RAPID_API_KEY;
 import Slider from "./Slider";
 import { Link } from "react-router";
-import Nav from "./layouts/Nav";
 
 function Index() {
   const [workoutList, setWorkoutList] = useState<string[] | null>(null);
 
   const [workouts, setWorkouts] = useState<any[] | null>(null);
+  // const [activeWorkouts, setActiveWorkouts] = useState<any[] | null>(null);
 
   useEffect(() => {
     const fetchPost = async () => {
