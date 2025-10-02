@@ -4,6 +4,7 @@ import "./index.css";
 import Index from "./Index.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
+import SingleWorkout from "./SingleWorkout.tsx";
 
 const router = createBrowserRouter([
   {
@@ -11,11 +12,14 @@ const router = createBrowserRouter([
     element: <Index />,
     children: [],
   },
+  {
+    path: "/workout/:workoutId",
+    element: <SingleWorkout />,
+  },
 ]);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    {/* <App /> */}
     <RouterProvider router={router} />
   </StrictMode>
 );

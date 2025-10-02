@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import.meta.env.VITE_RAPID_API_KEY;
 
 import Slider from "./Slider";
+import { Link } from "react-router";
 
 function Index() {
   const [workoutList, setWorkoutList] = useState<string[] | null>(null);
@@ -104,22 +105,24 @@ function Index() {
 
         <div className="grid grid-cols-3 gap-y-10">
           {workouts?.map((workout, index) => (
-            <div
-              key={index}
-              className="bg-white !p-4 h-80 aspect-square flex flex-col justify-end gap-4 hover:scale-110 transition-transform duration-300 rounded"
-            >
-              <div className="flex gap-2 ">
-                <button className="w-[fit-content] !py-1 !px-3 bg-red-200 rounded">
-                  {" "}
-                  {workout.bodyPart}{" "}
-                </button>
-                <button className="w-[fit-content] !py-1 !px-3 bg-yellow-200 rounded">
-                  {" "}
-                  {workout.target}{" "}
-                </button>
+            <Link to={`/workout/${workout.id}`}>
+              <div
+                key={index}
+                className="bg-white !p-4 h-80 aspect-square flex flex-col justify-end gap-4 hover:scale-110 transition-transform duration-300 rounded"
+              >
+                <div className="flex gap-2 ">
+                  <button className="w-[fit-content] !py-1 !px-3 bg-red-200 rounded">
+                    {" "}
+                    {workout.bodyPart}{" "}
+                  </button>
+                  <button className="w-[fit-content] !py-1 !px-3 bg-yellow-200 rounded">
+                    {" "}
+                    {workout.target}{" "}
+                  </button>
+                </div>
+                <p className="text-lg font-medium"> {workout.name} </p>
               </div>
-              <p className="text-lg font-medium"> {workout.name} </p>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
