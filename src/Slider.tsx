@@ -2,9 +2,15 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 type WorkoutProps = {
   workoutList: string[] | null;
+  activeFilter: string | null;
+  setActiveFilter: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
-const Slider = ({ workoutList }: WorkoutProps) => {
+const Slider = ({
+  workoutList,
+  activeFilter,
+  setActiveFilter,
+}: WorkoutProps) => {
   return (
     <Splide
       options={{
@@ -16,7 +22,11 @@ const Slider = ({ workoutList }: WorkoutProps) => {
     >
       <SplideSlide>
         <div className="flex justify-between !mx-12">
-          <div className="!my-14 flex flex-col items-center justify-center h-48 aspect-square bg-white text-center gap-5 hover:scale-110 transition-transform duration-300">
+          <div
+            onClick={() => setActiveFilter(null)}
+            style={{ border: `${!activeFilter ? "2px solid red" : "none"}` }}
+            className="!my-14 flex flex-col items-center justify-center h-48 aspect-square bg-white text-center gap-5 hover:scale-110 transition-transform duration-300"
+          >
             <img className="h-12 " src="./gym-icon.png" />
             <p className="capitalize text-base font-medium">All</p>
           </div>
@@ -24,6 +34,12 @@ const Slider = ({ workoutList }: WorkoutProps) => {
             if (index <= 2)
               return (
                 <div
+                  style={{
+                    border: `${
+                      activeFilter === category ? "2px solid red" : "none"
+                    }`,
+                  }}
+                  onClick={() => setActiveFilter(category)}
                   className="!my-14 flex flex-col items-center justify-center h-48 aspect-square bg-white text-center gap-5 hover:scale-110 transition-transform duration-300"
                   key={index}
                 >
@@ -40,6 +56,12 @@ const Slider = ({ workoutList }: WorkoutProps) => {
             if (index > 2 && index <= 6)
               return (
                 <div
+                  style={{
+                    border: `${
+                      activeFilter === category ? "2px solid red" : "none"
+                    }`,
+                  }}
+                  onClick={() => setActiveFilter(category)}
                   className="!my-14 flex flex-col items-center justify-center h-48 aspect-square bg-white text-center gap-5 hover:scale-110 transition-transform duration-300"
                   key={index}
                 >
@@ -56,6 +78,12 @@ const Slider = ({ workoutList }: WorkoutProps) => {
             if (index > 6 && index <= 10)
               return (
                 <div
+                  style={{
+                    border: `${
+                      activeFilter === category ? "2px solid red" : "none"
+                    }`,
+                  }}
+                  onClick={() => setActiveFilter(category)}
                   className="!my-14 flex flex-col items-center justify-center h-48 aspect-square bg-white text-center gap-5 hover:scale-110 transition-transform duration-300"
                   key={index}
                 >
@@ -72,6 +100,12 @@ const Slider = ({ workoutList }: WorkoutProps) => {
             if (index > 10 && index <= 14)
               return (
                 <div
+                  style={{
+                    border: `${
+                      activeFilter === category ? "2px solid red" : "none"
+                    }`,
+                  }}
+                  onClick={() => setActiveFilter(category)}
                   className="!my-14 flex flex-col items-center justify-center h-48 aspect-square bg-white text-center gap-5 hover:scale-110 transition-transform duration-300"
                   key={index}
                 >

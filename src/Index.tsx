@@ -7,7 +7,11 @@ function Index() {
   const [workoutList, setWorkoutList] = useState<string[] | null>(null);
 
   const [workouts, setWorkouts] = useState<any[] | null>(null);
-  // const [activeWorkouts, setActiveWorkouts] = useState<any[] | null>(null);
+  const [activeWorkouts, setActiveWorkouts] = useState<any[] | null>(null);
+
+  const [activeFilter, setActiveFilter] = useState<null | string>(null);
+
+  console.log(activeFilter);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -26,6 +30,7 @@ function Index() {
         const response = await fetch(url, options);
         const posts = await response.json();
         setWorkoutList(posts);
+        setActiveWorkouts(posts);
       } catch (error) {}
     };
 
@@ -92,7 +97,11 @@ function Index() {
           </div>
         </div>
 
-        <Slider workoutList={workoutList} />
+        <Slider
+          workoutList={workoutList}
+          activeFilter={activeFilter}
+          setActiveFilter={setActiveFilter}
+        />
       </section>
 
       <section className="w-7xl !mx-auto !mt-38 !py-0 ">
