@@ -3,53 +3,38 @@ import.meta.env.VITE_RAPID_API_KEY;
 
 import "./App.css";
 
-const workoutCategories: string[] = [
-  "all",
-  "back",
-  "cardio",
-  "chest",
-  "lower arms",
-  "lower legs",
-  "neck",
-  "shoulders",
-  "upper arms",
-  "upper legs",
-  "waist",
-];
-
 function App() {
-  const [workoutList, setWorkoutList] = useState(null);
-
-  const [videos, setVideos] = useState(null);
-
-  // useEffect(() => {
-  //   const fetchPost = async () => {
-  //     const url = "https://exercises11.p.rapidapi.com/images/0001.gif";
-  //     const options = {
-  //       method: "GET",
-  //       headers: {
-  //         "x-rapidapi-key":
-  //           "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
-  //         "x-rapidapi-host": "exercises11.p.rapidapi.com",
-  //       },
-  //     };
-
-  //     try {
-  //       const response = await fetch(url, options);
-  //       const posts = await response.json();
-  //       console.log(posts);
-  //     } catch (error) {
-  //       // console.log(error);
-  //     }
-  //   };
-
-  //   fetchPost();
-  // }, []);
+  const [workoutList, setWorkoutList] = useState<string[] | null>(null);
 
   useEffect(() => {
     const fetchPost = async () => {
       const url: string =
-        "https://exercisedb.p.rapidapi.com/exercises/images/0001.gif";
+        "https://exercisedb.p.rapidapi.com/exercises/targetList";
+      const options = {
+        method: "GET",
+        headers: {
+          "x-rapidapi-key":
+            "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
+          "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+        },
+      };
+
+      try {
+        const response = await fetch(url, options);
+        const posts = await response.json();
+        console.log(posts);
+        setWorkoutList(posts);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchPost();
+  }, []);
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      const url: string = "https://exercisedb.p.rapidapi.com/exercises";
       const options = {
         method: "GET",
         headers: {
@@ -111,8 +96,8 @@ function App() {
         </div>
 
         <div className="flex justify-between">
-          <img src="https://exercises11.p.rapidapi.com/images/0001.gif" />
-          {workoutCategories.map((category, index) => (
+          <img src="https://v2.exercisedb.io/image/UFPboDclIZJmJA" />
+          {workoutList?.map((category, index) => (
             <div key={index}>
               <img className="h-12 " src="./gym-icon.png" />
               <p>{category}</p>
