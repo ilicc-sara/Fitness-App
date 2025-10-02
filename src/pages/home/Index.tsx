@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import.meta.env.VITE_RAPID_API_KEY;
-import Slider from "./Slider";
+import Slider from "./components/Slider";
 import { Link } from "react-router";
 
 const URL = "https://exercisedb.p.rapidapi.com";
