@@ -24,11 +24,8 @@ function Index() {
       try {
         const response = await fetch(url, options);
         const posts = await response.json();
-        console.log(posts);
         setWorkoutList(posts);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
 
     fetchPost();
@@ -50,9 +47,8 @@ function Index() {
         const response = await fetch(url, options);
         const posts = await response.json();
         console.log(posts);
-      } catch (error) {
-        console.log(error);
-      }
+        setWorkouts(posts);
+      } catch (error) {}
     };
 
     fetchPost();
@@ -105,6 +101,27 @@ function Index() {
         <h1 className="text-5xl font-medium leading-15 text-left !mb-18">
           Showing Results
         </h1>
+
+        <div className="grid grid-cols-3 gap-y-10">
+          {workouts?.map((workout, index) => (
+            <div
+              key={index}
+              className="bg-white !p-4 h-80 aspect-square flex flex-col justify-end gap-4 hover:scale-110 transition-transform duration-300 rounded"
+            >
+              <div className="flex gap-2 ">
+                <button className="w-[fit-content] !py-1 !px-3 bg-red-200 rounded">
+                  {" "}
+                  {workout.bodyPart}{" "}
+                </button>
+                <button className="w-[fit-content] !py-1 !px-3 bg-yellow-200 rounded">
+                  {" "}
+                  {workout.target}{" "}
+                </button>
+              </div>
+              <p className="text-lg font-medium"> {workout.name} </p>
+            </div>
+          ))}
+        </div>
       </section>
     </>
   );
