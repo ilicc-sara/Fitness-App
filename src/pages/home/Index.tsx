@@ -20,7 +20,7 @@ function Index() {
         method: "GET",
         headers: {
           "x-rapidapi-key":
-            "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
+            "37b9fbdafamsh38ae9b00f9888abp1cb0e5jsn54745baf4c79",
           "x-rapidapi-host": "exercisedb.p.rapidapi.com",
         },
       };
@@ -67,7 +67,7 @@ function Index() {
         method: "GET",
         headers: {
           "x-rapidapi-key":
-            "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
+            "37b9fbdafamsh38ae9b00f9888abp1cb0e5jsn54745baf4c79",
           "x-rapidapi-host": "exercisedb.p.rapidapi.com",
         },
       };
