@@ -47,7 +47,7 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
     >
       {workouts && (
         <SplideSlide>
-          <div className="grid grid-cols-3 !my-10 gap-y-10">
+          <div className="grid grid-cols-3 !my-10 gap-y-10 place-items-center">
             {workouts?.map((workout, index) => {
               if (index <= 5)
                 return (
@@ -57,7 +57,7 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
                       className="bg-white !p-4 h-90 aspect-square flex flex-col justify-end gap-4 hover:scale-110 transition-transform duration-300 rounded"
                     >
                       <img
-                        className="w-[60%] aspect-square !mx-auto"
+                        className="w-[70%] aspect-square !mx-auto"
                         src={imageUrl}
                       />
                       <div className="flex gap-2 ">
@@ -80,15 +80,19 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
       )}
       {workouts && workouts?.length > 6 && (
         <SplideSlide>
-          <div className="grid grid-cols-3 !my-10 gap-y-10">
+          <div className="grid grid-cols-3 !my-10 gap-y-10 place-items-center">
             {workouts?.map((workout, index) => {
               if (index >= 6 && index < 12)
                 return (
                   <Link to={`/workout/${workout.id}`}>
                     <div
                       key={index}
-                      className="bg-white !p-4 h-80 aspect-square flex flex-col justify-end gap-4 hover:scale-110 transition-transform duration-300 rounded"
+                      className="bg-white !p-4 h-90 aspect-square flex flex-col justify-end gap-4 hover:scale-110 transition-transform duration-300 rounded"
                     >
+                      <img
+                        className="w-[70%] aspect-square !mx-auto"
+                        src={imageUrl}
+                      />
                       <div className="flex gap-2 ">
                         <button className="w-[fit-content] !py-1 !px-3 bg-red-200 rounded">
                           {" "}
@@ -110,15 +114,19 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
 
       {workouts && workouts?.length > 12 && (
         <SplideSlide>
-          <div className="grid grid-cols-3 !my-10 gap-y-10">
+          <div className="grid grid-cols-3 !my-10 gap-y-10 place-items-center">
             {workouts?.map((workout, index) => {
               if (index >= 12 && index < 18)
                 return (
                   <Link to={`/workout/${workout.id}`}>
                     <div
                       key={index}
-                      className="bg-white !p-4 h-80 aspect-square flex flex-col justify-end gap-4 hover:scale-110 transition-transform duration-300 rounded"
+                      className="bg-white !p-4 h-90 aspect-square flex flex-col justify-end gap-4 hover:scale-110 transition-transform duration-300 rounded"
                     >
+                      <img
+                        className="w-[70%] aspect-square !mx-auto"
+                        src={imageUrl}
+                      />
                       <div className="flex gap-2 ">
                         <button className="w-[fit-content] !py-1 !px-3 bg-red-200 rounded">
                           {" "}
