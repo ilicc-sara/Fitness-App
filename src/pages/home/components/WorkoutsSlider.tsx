@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Link } from "react-router";
 
@@ -7,6 +7,32 @@ type WorkoutProps = {
 };
 
 const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchImage = async () => {
+      try {
+        const res = await fetch(
+          "https://exercises11.p.rapidapi.com/images/0001.gif",
+          {
+            method: "GET",
+            headers: {
+              "x-rapidapi-key": "tvoj-api-key",
+              "x-rapidapi-host": "exercises11.p.rapidapi.com",
+            },
+          }
+        );
+
+        const blob = await res.blob();
+        setImageUrl(URL.createObjectURL(blob));
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchImage();
+  }, []);
+
   return (
     <Splide
       options={{
@@ -22,6 +48,7 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
         <SplideSlide>
           <div className="grid grid-cols-3 !my-10 gap-y-10">
             {workouts?.map((workout, index) => {
+              // const imageUrl = `https://exercises11.p.rapidapi.com/images/${workout.id}.gif`;
               if (index <= 5)
                 return (
                   <Link to={`/workout/${workout.id}`}>
@@ -29,6 +56,7 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
                       key={index}
                       className="bg-white !p-4 h-80 aspect-square flex flex-col justify-end gap-4 hover:scale-110 transition-transform duration-300 rounded"
                     >
+                      <img src={imageUrl} />
                       <div className="flex gap-2 ">
                         <button className="w-[fit-content] !py-1 !px-3 bg-red-200 rounded">
                           {" "}
