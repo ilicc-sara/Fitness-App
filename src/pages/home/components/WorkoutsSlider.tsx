@@ -17,7 +17,8 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
           {
             method: "GET",
             headers: {
-              "x-rapidapi-key": "tvoj-api-key",
+              "x-rapidapi-key":
+                "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
               "x-rapidapi-host": "exercises11.p.rapidapi.com",
             },
           }
@@ -48,15 +49,17 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
         <SplideSlide>
           <div className="grid grid-cols-3 !my-10 gap-y-10">
             {workouts?.map((workout, index) => {
-              // const imageUrl = `https://exercises11.p.rapidapi.com/images/${workout.id}.gif`;
               if (index <= 5)
                 return (
                   <Link to={`/workout/${workout.id}`}>
                     <div
                       key={index}
-                      className="bg-white !p-4 h-80 aspect-square flex flex-col justify-end gap-4 hover:scale-110 transition-transform duration-300 rounded"
+                      className="bg-white !p-4 h-90 aspect-square flex flex-col justify-end gap-4 hover:scale-110 transition-transform duration-300 rounded"
                     >
-                      <img src={imageUrl} />
+                      <img
+                        className="w-[60%] aspect-square !mx-auto"
+                        src={imageUrl}
+                      />
                       <div className="flex gap-2 ">
                         <button className="w-[fit-content] !py-1 !px-3 bg-red-200 rounded">
                           {" "}
