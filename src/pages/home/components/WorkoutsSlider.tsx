@@ -6,8 +6,13 @@ type WorkoutProps = {
   workouts: any[] | null;
 };
 
+type Image = {
+  id: string;
+  url: string;
+};
+
 const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
-  const [imageUrl, setImageUrl] = useState<string[]>([]);
+  const [imageUrl, setImageUrl] = useState<Image[]>([]);
 
   useEffect(() => {
     const fetchImage = async (id: string) => {
@@ -26,7 +31,9 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
 
         const blob = await res.blob();
         // setImageUrl(URL.createObjectURL(blob));
-        setImageUrl((prev) => [...prev, { [id]: URL.createObjectURL(blob) }]);
+        setImageUrl((prev) => {
+          return [...prev, { id, url: URL.createObjectURL(blob) }];
+        });
       } catch (err) {
         console.error(err);
       }
