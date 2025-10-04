@@ -7,7 +7,7 @@ type WorkoutProps = {
 };
 
 const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [imageUrl, setImageUrl] = useState<string>("");
 
   useEffect(() => {
     const fetchImage = async () => {
@@ -57,7 +57,7 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
                       className="bg-white !p-4 h-90 aspect-square flex flex-col justify-end gap-4 hover:scale-110 transition-transform duration-300 rounded"
                     >
                       <img
-                        className="w-[70%] aspect-square !mx-auto"
+                        className="w-[65%] aspect-square !mx-auto"
                         src={imageUrl}
                       />
                       <div className="flex gap-2 ">
@@ -90,7 +90,7 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
                       className="bg-white !p-4 h-90 aspect-square flex flex-col justify-end gap-4 hover:scale-110 transition-transform duration-300 rounded"
                     >
                       <img
-                        className="w-[70%] aspect-square !mx-auto"
+                        className="w-[65%] aspect-square !mx-auto"
                         src={imageUrl}
                       />
                       <div className="flex gap-2 ">
@@ -124,7 +124,7 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
                       className="bg-white !p-4 h-90 aspect-square flex flex-col justify-end gap-4 hover:scale-110 transition-transform duration-300 rounded"
                     >
                       <img
-                        className="w-[70%] aspect-square !mx-auto"
+                        className="w-[65%] aspect-square !mx-auto"
                         src={imageUrl}
                       />
                       <div className="flex gap-2 ">
