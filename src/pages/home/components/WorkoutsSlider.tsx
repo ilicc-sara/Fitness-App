@@ -7,13 +7,13 @@ type WorkoutProps = {
 };
 
 const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
-  const [imageUrl, setImageUrl] = useState<string>("");
+  const [imageUrl, setImageUrl] = useState<string[]>([]);
 
   useEffect(() => {
-    const fetchImage = async () => {
+    const fetchImage = async (id: string) => {
       try {
         const res = await fetch(
-          "https://exercises11.p.rapidapi.com/images/0001.gif",
+          `https://exercises11.p.rapidapi.com/images/${id}.gif`,
           {
             method: "GET",
             headers: {
@@ -25,13 +25,14 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
         );
 
         const blob = await res.blob();
-        setImageUrl(URL.createObjectURL(blob));
+        // setImageUrl(URL.createObjectURL(blob));
+        setImageUrl((prev) => [...prev, { [id]: URL.createObjectURL(blob) }]);
       } catch (err) {
         console.error(err);
       }
     };
 
-    fetchImage();
+    fetchImage("0002");
   }, []);
 
   return (
