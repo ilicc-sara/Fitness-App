@@ -9,11 +9,11 @@ type WorkoutProps = {
 const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
   const [imageUrl, setImageUrl] = useState<string>("");
 
-  useEffect(() => {
+  useEffect((id: string) => {
     const fetchImage = async () => {
       try {
         const res = await fetch(
-          "https://exercises11.p.rapidapi.com/images/0001.gif",
+          `https://exercises11.p.rapidapi.com/images/${id}.gif`,
           {
             method: "GET",
             headers: {
@@ -25,6 +25,8 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
         );
 
         const blob = await res.blob();
+        console.log(res.url);
+        console.log("blob", blob);
         setImageUrl(URL.createObjectURL(blob));
       } catch (err) {
         console.error(err);
@@ -33,6 +35,46 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
 
     fetchImage();
   }, []);
+
+  // function showWorkoutImage(id: string) {
+  //   fetch(`https://exercises11.p.rapidapi.com/images/${id}.gif`, {
+  //     method: "GET",
+  //     headers: {
+  //       "x-rapidapi-key": "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
+  //       "x-rapidapi-host": "exercises11.p.rapidapi.com",
+  //     },
+  //   })
+  //     .then((response) => response.blob())
+  //     .then((myBlob) => {
+  //       const objectURL = URL.createObjectURL(myBlob);
+  //       return objectURL;
+  //     });
+  // }
+
+  // function showWorkoutImage(id: string) {
+  //   const fetchImage = async () => {
+  //     try {
+  //       const res = await fetch(
+  //         `https://exercises11.p.rapidapi.com/images/${id}.gif`,
+  //         {
+  //           method: "GET",
+  //           headers: {
+  //             "x-rapidapi-key":
+  //               "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
+  //             "x-rapidapi-host": "exercises11.p.rapidapi.com",
+  //           },
+  //         }
+  //       );
+
+  //       const blob = await res.blob();
+  //       imageURL = URL.createObjectURL(blob);
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   };
+
+  //   fetchImage();
+  // }
 
   return (
     <Splide
@@ -58,7 +100,7 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
                     >
                       <img
                         className="w-[65%] aspect-square !mx-auto"
-                        src={imageUrl}
+                        src={showWorkoutImage(workout.id)}
                       />
                       <div className="flex gap-2 ">
                         <button className="w-[fit-content] !py-1 !px-3 bg-red-200 rounded">
@@ -91,7 +133,7 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
                     >
                       <img
                         className="w-[65%] aspect-square !mx-auto"
-                        src={imageUrl}
+                        src={showWorkoutImage(workout.id)}
                       />
                       <div className="flex gap-2 ">
                         <button className="w-[fit-content] !py-1 !px-3 bg-red-200 rounded">
@@ -125,7 +167,7 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
                     >
                       <img
                         className="w-[65%] aspect-square !mx-auto"
-                        src={imageUrl}
+                        src={showWorkoutImage(workout.id)}
                       />
                       <div className="flex gap-2 ">
                         <button className="w-[fit-content] !py-1 !px-3 bg-red-200 rounded">
