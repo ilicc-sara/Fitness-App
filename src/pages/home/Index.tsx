@@ -12,6 +12,8 @@ function Index() {
 
   const [activeFilter, setActiveFilter] = useState<null | string>(null);
 
+  const [searchFilter, setSearchFilter] = useState<string>("");
+
   const workoutsRef = useRef<HTMLElement | null>(null);
 
   const scrollToWorkouts = () => {
@@ -84,6 +86,7 @@ function Index() {
         const posts = await response.json();
         console.log("filtered exercises", posts);
         setWorkouts(posts);
+        setActiveFilter("");
       } catch (error) {
         console.error(error);
       }
@@ -91,6 +94,33 @@ function Index() {
 
     fetchPost();
   }, [activeFilter]);
+
+  function searchByInput() {
+    if (searchFilter === "") return;
+
+    const fetchPost = async () => {
+      const url: string = `${URL}/exercises/bodyPart/${searchFilter}`;
+      const options = {
+        method: "GET",
+        headers: {
+          "x-rapidapi-key":
+            "37b9fbdafamsh38ae9b00f9888abp1cb0e5jsn54745baf4c79",
+          "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+        },
+      };
+
+      try {
+        const response = await fetch(url, options);
+        const posts = await response.json();
+        console.log("filtered exercises", posts);
+        setWorkouts(posts);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchPost();
+  }
 
   return (
     <>
@@ -123,10 +153,14 @@ function Index() {
           </h1>
           <div className="!mx-auto w-7xl flex justify-center items-center">
             <input
+              onChange={(e) => setSearchFilter(e.target.value)}
               className="border border-gray-300 rounded-md !pl-3 bg-white !py-3 !px-5 w-[70%]"
               placeholder="Search Exercises"
             />
-            <button className="bg-indigo-900 !py-3 !px-5 text-white w-[fit-content] rounded  !-mr-2">
+            <button
+              onClick={() => searchByInput()}
+              className="bg-indigo-900 !py-3 !px-5 text-white w-[fit-content] rounded  !-mr-2"
+            >
               Search
             </button>
           </div>
