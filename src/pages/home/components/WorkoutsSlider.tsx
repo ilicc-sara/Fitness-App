@@ -12,7 +12,7 @@ type Image = {
 };
 
 const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
-  const [imageUrl, setImageUrl] = useState<Image[]>([]);
+  const [imagesUrl, setImagesUrl] = useState<Image[]>([]);
 
   useEffect(() => {
     const fetchImage = async (id: string) => {
@@ -30,17 +30,29 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
         );
 
         const blob = await res.blob();
-        // setImageUrl(URL.createObjectURL(blob));
-        setImageUrl((prev) => {
-          return [...prev, { id, url: URL.createObjectURL(blob) }];
+        const url = URL.createObjectURL(blob);
+
+        setImagesUrl((prev) => {
+          if (prev.some((img) => img.id === id)) {
+            return prev;
+          } else {
+            return [...prev, { id, url }];
+          }
         });
       } catch (err) {
         console.error(err);
       }
     };
 
-    fetchImage("0002");
-  }, []);
+    workouts?.forEach((workout) => {
+      if (workout.id) fetchImage(workout.id);
+    });
+  }, [workouts]);
+
+  function getImageUrl(id: string) {
+    const image = imagesUrl?.find((img) => img.id === id);
+    return image ? image.url : "";
+  }
 
   return (
     <Splide
@@ -66,7 +78,7 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
                     >
                       <img
                         className="w-[65%] aspect-square !mx-auto"
-                        src={imageUrl}
+                        src={getImageUrl(workout.id)}
                       />
                       <div className="flex gap-2 ">
                         <button className="w-[fit-content] !py-1 !px-3 bg-red-200 rounded">
@@ -99,7 +111,7 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
                     >
                       <img
                         className="w-[65%] aspect-square !mx-auto"
-                        src={imageUrl}
+                        src={getImageUrl(workout.id)}
                       />
                       <div className="flex gap-2 ">
                         <button className="w-[fit-content] !py-1 !px-3 bg-red-200 rounded">
@@ -133,7 +145,7 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
                     >
                       <img
                         className="w-[65%] aspect-square !mx-auto"
-                        src={imageUrl}
+                        src={getImageUrl(workout.id)}
                       />
                       <div className="flex gap-2 ">
                         <button className="w-[fit-content] !py-1 !px-3 bg-red-200 rounded">
