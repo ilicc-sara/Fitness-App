@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import.meta.env.VITE_RAPID_API_KEY;
 import Slider from "./components/Slider";
 import WorkoutsSlider from "./components/WorkoutsSlider";
-import { Link } from "react-router";
 
 const URL = "https://exercisedb.p.rapidapi.com";
 
@@ -12,6 +11,14 @@ function Index() {
   const [workouts, setWorkouts] = useState<any[] | null>(null);
 
   const [activeFilter, setActiveFilter] = useState<null | string>(null);
+
+  const workoutsRef = useRef<HTMLElement | null>(null);
+
+  const scrollToWorkouts = () => {
+    workoutsRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -94,7 +101,10 @@ function Index() {
             Sweat, Smile <br /> And Repeat
           </h1>
           <p>Check out the most effective exercises personalized to you</p>
-          <button className="bg-indigo-900 !py-2 !px-3 text-white w-[fit-content] rounded">
+          <button
+            onClick={() => scrollToWorkouts()}
+            className="bg-indigo-900 !py-2 !px-3 text-white w-[fit-content] rounded"
+          >
             Explore Exercises
           </button>
           <h1 className=" text-[170px] font-bold text-[#ddd] tracking-[40px] absolute -z-1 -bottom-[90%]">
@@ -129,7 +139,7 @@ function Index() {
         />
       </section>
 
-      <section className="w-7xl !mx-auto !mt-38 !py-0 ">
+      <section ref={workoutsRef} className="w-7xl !mx-auto !mt-38 !py-0 ">
         <h1 className="text-5xl font-medium leading-15 text-left !mb-18">
           Showing Results
         </h1>
