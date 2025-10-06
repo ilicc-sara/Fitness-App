@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import WorkoutsSlider from "../home/components/WorkoutsSlider";
+import { ToastContainer, toast } from "react-toastify";
+
+const URL_ = "https://exercisedb.p.rapidapi.com";
 
 function SingleWorkout() {
   const params = useParams();
   const [workout, setWorkout] = useState<WorkoutObject | null>(null);
+  const [imageUrl, setImageUrl] = useState<string>("");
+  const [similarExercise, setSimilarExercise] = useState<null | string>(null);
+  const [workouts, setWorkouts] = useState<any[] | null>(null);
 
   type WorkoutObject = {
     name: string;
@@ -32,8 +39,9 @@ function SingleWorkout() {
       try {
         const response = await fetch(url, options);
         const posts = await response.json();
-        console.log(posts);
+
         setWorkout(posts);
+        setSimilarExercise(posts.bodyPart);
       } catch (error) {}
     };
 
@@ -69,7 +77,6 @@ function SingleWorkout() {
     fetchPost();
   }, [workout]);
 
-  const [imageUrl, setImageUrl] = useState<string>("");
   useEffect(() => {
     const fetchImage = async () => {
       try {
@@ -96,34 +103,72 @@ function SingleWorkout() {
 
     fetchImage();
   }, []);
+
+  useEffect(() => {
+    if (!similarExercise) return;
+
+    const fetchPost = async () => {
+      const url: string = `${URL_}/exercises/bodyPart/${similarExercise}`;
+      const options = {
+        method: "GET",
+        headers: {
+          "x-rapidapi-key":
+            "37b9fbdafamsh38ae9b00f9888abp1cb0e5jsn54745baf4c79",
+          "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+        },
+      };
+
+      try {
+        const response = await fetch(url, options);
+        const posts = await response.json();
+        setWorkouts(posts);
+      } catch (error) {
+        toast.error("Something went wrong...");
+      }
+    };
+
+    fetchPost();
+  }, [similarExercise]);
   return (
-    <section className="w-[90%] !mx-auto !my-8">
-      <div className="text-left grid grid-cols-2 items-center">
-        <img className="w-full" src={imageUrl} />
+    <>
+      <ToastContainer position="top-center" />
+      <section className="w-[90%] !mx-auto !my-8">
+        <div className="text-left grid grid-cols-2 items-center">
+          <img className="w-full rounded" src={imageUrl} />
 
-        <div className="flex flex-col justify-center !p-14">
-          <h1 className="text-6xl font-bold capitalize"> {workout?.name} </h1>
-          <p className="text-xl !my-7"> {workout?.description} </p>
+          <div className="flex flex-col justify-center !p-14">
+            <h1 className="text-6xl font-bold capitalize"> {workout?.name} </h1>
+            <p className="text-xl !my-7"> {workout?.description} </p>
 
-          <div className="flex flex-col gap-5 text-lg font-medium mt-6">
-            <div className="!p-3 flex justify-between bg-red-100 text-red-700 px-4 py-2 rounded-lg shadow-sm">
-              <span>Body Part:</span>
-              <span>{workout?.bodyPart}</span>
-            </div>
+            <div className="flex flex-col gap-5 text-lg font-medium mt-6">
+              <div className="!p-3 flex justify-between text-red-700 px-4 py-2 rounded-lg shadow-sm">
+                <span>Body Part:</span>
+                <span className="uppercase">{workout?.bodyPart}</span>
+              </div>
 
-            <div className="!p-3 flex justify-between bg-yellow-100 text-yellow-700 px-4 py-2 rounded-lg shadow-sm">
-              <span>Target:</span>
-              <span>{workout?.target}</span>
-            </div>
+              <div className="!p-3 flex justify-between text-yellow-700 px-4 py-2 rounded-lg shadow-sm">
+                <span>Target:</span>
+                <span className="uppercase">{workout?.target}</span>
+              </div>
 
-            <div className="!p-3 flex justify-between bg-blue-100 text-blue-700 px-4 py-2 rounded-lg shadow-sm col-span-2">
-              <span>Equipment:</span>
-              <span>{workout?.equipment}</span>
+              <div className="!p-3 flex justify-between text-indigo-900 px-4 py-2 rounded-lg shadow-sm col-span-2">
+                <span>Equipment:</span>
+                <span className="uppercase">{workout?.equipment}</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <section className="w-7xl !mx-auto !mt-38 !py-0 ">
+        <h1 className="text-6xl font-bold capitalize">
+          {" "}
+          Similar <span className="text-indigo-900">Target Muscle</span>{" "}
+          exercises{" "}
+        </h1>
+
+        <WorkoutsSlider workouts={workouts} />
+      </section>
+    </>
   );
 }
 
