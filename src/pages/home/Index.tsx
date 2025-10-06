@@ -127,9 +127,8 @@ function Index() {
 
   return (
     <>
+      <ToastContainer position="top-center" />
       <section className="text-left grid grid-cols-2 w-7xl !mx-auto !my-8 items-center">
-        <ToastContainer position="top-center" />
-
         <div className="flex flex-col gap-3 relative">
           <h2 className="text-blue-500 text-3xl font-bold">Fitness Club</h2>
           <h1 className="text-5xl font-semibold leading-15">

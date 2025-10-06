@@ -7,6 +7,14 @@ function SingleWorkout() {
 
   type WorkoutObject = {
     name: string;
+    bodyPart: string;
+    category: string;
+    description: string;
+    difficulty: string;
+    equipment: string;
+    instrucitons: string[];
+    secondaryMuscles: string[];
+    target: string;
   };
 
   useEffect(() => {
@@ -89,9 +97,32 @@ function SingleWorkout() {
     fetchImage();
   }, []);
   return (
-    <section className="text-left grid grid-cols-2 w-7xl !mx-auto !my-8 items-center">
-      <img src={imageUrl} />
-      <h1>Single Workout {params.workoutId}</h1>
+    <section className="w-[90%] !mx-auto !my-8">
+      <div className="text-left grid grid-cols-2 items-center">
+        <img className="w-full" src={imageUrl} />
+
+        <div className="flex flex-col justify-center !p-14">
+          <h1 className="text-6xl font-bold capitalize"> {workout?.name} </h1>
+          <p className="text-xl !my-7"> {workout?.description} </p>
+
+          <div className="flex flex-col gap-5 text-lg font-medium mt-6">
+            <div className="!p-3 flex justify-between bg-red-100 text-red-700 px-4 py-2 rounded-lg shadow-sm">
+              <span>Body Part:</span>
+              <span>{workout?.bodyPart}</span>
+            </div>
+
+            <div className="!p-3 flex justify-between bg-yellow-100 text-yellow-700 px-4 py-2 rounded-lg shadow-sm">
+              <span>Target:</span>
+              <span>{workout?.target}</span>
+            </div>
+
+            <div className="!p-3 flex justify-between bg-blue-100 text-blue-700 px-4 py-2 rounded-lg shadow-sm col-span-2">
+              <span>Equipment:</span>
+              <span>{workout?.equipment}</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
