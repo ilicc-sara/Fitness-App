@@ -60,8 +60,37 @@ function SingleWorkout() {
 
     fetchPost();
   }, [workout]);
+
+  const [imageUrl, setImageUrl] = useState<string>("");
+  useEffect(() => {
+    const fetchImage = async () => {
+      try {
+        const res = await fetch(
+          `https://exercises11.p.rapidapi.com/images/${params.workoutId}.gif`,
+          {
+            method: "GET",
+            headers: {
+              "x-rapidapi-key":
+                "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
+              "x-rapidapi-host": "exercises11.p.rapidapi.com",
+            },
+          }
+        );
+
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+
+        setImageUrl(url);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchImage();
+  }, []);
   return (
     <section className="text-left grid grid-cols-2 w-7xl !mx-auto !my-8 items-center">
+      <img src={imageUrl} />
       <h1>Single Workout {params.workoutId}</h1>
     </section>
   );

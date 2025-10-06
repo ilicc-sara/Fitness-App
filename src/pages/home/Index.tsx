@@ -8,11 +8,8 @@ const URL = "https://exercisedb.p.rapidapi.com";
 
 function Index() {
   const [workoutList, setWorkoutList] = useState<string[] | null>(null);
-
   const [workouts, setWorkouts] = useState<any[] | null>(null);
-
   const [activeFilter, setActiveFilter] = useState<null | string>(null);
-
   const [searchFilter, setSearchFilter] = useState<string>("");
 
   const workoutsRef = useRef<HTMLElement | null>(null);
