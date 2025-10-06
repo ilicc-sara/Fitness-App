@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import WorkoutsSlider from "../home/components/WorkoutsSlider";
+import WorkoutsSlider from "../../UI/WorkoutsSlider";
 import { ToastContainer, toast } from "react-toastify";
 
 const URL_ = "https://exercisedb.p.rapidapi.com";
@@ -11,6 +11,7 @@ function SingleWorkout() {
   const [imageUrl, setImageUrl] = useState<string>("");
   const [similarExercise, setSimilarExercise] = useState<null | string>(null);
   const [workouts, setWorkouts] = useState<any[] | null>(null);
+  const [videos, setVideos] = useState<any[] | null>(null);
 
   type WorkoutObject = {
     name: string;
@@ -70,7 +71,8 @@ function SingleWorkout() {
       try {
         const response = await fetch(url, options);
         const posts = await response.json();
-        console.log(posts);
+        console.log("videos", posts.contents);
+        setVideos([posts.contents[0], posts.contents[1]]);
       } catch (error) {}
     };
 
@@ -97,7 +99,7 @@ function SingleWorkout() {
 
         setImageUrl(url);
       } catch (err) {
-        console.error(err);
+        toast.error("Something went wrong...");
       }
     };
 
@@ -167,6 +169,30 @@ function SingleWorkout() {
         </h1>
 
         <WorkoutsSlider workouts={workouts} />
+      </section>
+      <section className="w-7xl !mx-auto !mt-38 !py-0 ">
+        <h1 className="text-6xl font-bold capitalize">
+          {" "}
+          Watch <span className="text-indigo-900">{workout?.name}</span>{" "}
+          exercise videos
+        </h1>
+
+        <div className="flex gap-20 !my-15">
+          {videos?.map((video) => (
+            <a
+              href={`https://www.youtube.com/watch?v=${video.videoId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-black w-100"
+            >
+              <img className="w-100" src={video.video.thumbnails[0].url} />
+              <p className="text-2xl font-bold !my-3"> {video.video.title} </p>
+              <p className="text-sm text-stone-500">
+                {video.video.channelName}
+              </p>
+            </a>
+          ))}
+        </div>
       </section>
     </>
   );

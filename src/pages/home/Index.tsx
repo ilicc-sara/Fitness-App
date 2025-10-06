@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import.meta.env.VITE_RAPID_API_KEY;
 import Slider from "./components/Slider";
-import WorkoutsSlider from "./components/WorkoutsSlider";
+import WorkoutsSlider from "../../UI/WorkoutsSlider";
 import { ToastContainer, toast } from "react-toastify";
 
 const URL = "https://exercisedb.p.rapidapi.com";
