@@ -4,7 +4,7 @@ import Slider from "./components/Slider";
 import WorkoutsSlider from "../../UI/WorkoutsSlider";
 import { ToastContainer, toast } from "react-toastify";
 
-const URL = "https://exercisedb.p.rapidapi.com";
+const URL_ = "https://exercisedb.p.rapidapi.com";
 
 function Index() {
   const [workoutList, setWorkoutList] = useState<string[] | null>(null);
@@ -44,7 +44,7 @@ function Index() {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const url: string = `${URL}/exercises`;
+      const url: string = `${URL_}/exercises`;
       const options = {
         method: "GET",
         headers: {
@@ -70,7 +70,7 @@ function Index() {
     if (!activeFilter) return;
 
     const fetchPost = async () => {
-      const url: string = `${URL}/exercises/bodyPart/${activeFilter}`;
+      const url: string = `${URL_}/exercises/bodyPart/${activeFilter}`;
       const options = {
         method: "GET",
         headers: {
@@ -96,7 +96,7 @@ function Index() {
     if (searchFilter === "") return;
 
     const fetchPost = async () => {
-      const url: string = `${URL}/exercises/bodyPart/${searchFilter}`;
+      const url: string = `${URL_}/exercises/bodyPart/${searchFilter}`;
       const options = {
         method: "GET",
         headers: {
@@ -159,12 +159,12 @@ function Index() {
             <input
               value={searchFilter}
               onChange={(e) => setSearchFilter(e.target.value)}
-              className="border border-gray-300 rounded-md !pl-3 bg-white !py-3 !px-5 w-[70%]"
+              className="border border-gray-300 rounded-tl rounded-bl !pl-3 bg-white !py-3 !px-5 w-[70%]"
               placeholder="Search Exercises"
             />
             <button
               onClick={() => searchByInput()}
-              className="bg-indigo-900 !py-3 !px-5 text-white w-[fit-content] rounded  !-mr-2"
+              className="bg-indigo-900 !py-3 !px-5 text-white w-[fit-content] rounded-tr rounded-br  !-mr-2"
             >
               Search
             </button>

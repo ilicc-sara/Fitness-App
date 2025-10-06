@@ -27,7 +27,7 @@ function SingleWorkout() {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const url: string = `https://exercisedb.p.rapidapi.com/exercises/exercise/${params.workoutId}`;
+      const url: string = `${URL_}/exercises/exercise/${params.workoutId}`;
       const options = {
         method: "GET",
         headers: {
@@ -82,17 +82,14 @@ function SingleWorkout() {
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        const res = await fetch(
-          `https://exercises11.p.rapidapi.com/images/${params.workoutId}.gif`,
-          {
-            method: "GET",
-            headers: {
-              "x-rapidapi-key":
-                "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
-              "x-rapidapi-host": "exercises11.p.rapidapi.com",
-            },
-          }
-        );
+        const res = await fetch(`${URL_}/images/${params.workoutId}.gif`, {
+          method: "GET",
+          headers: {
+            "x-rapidapi-key":
+              "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
+            "x-rapidapi-host": "exercises11.p.rapidapi.com",
+          },
+        });
 
         const blob = await res.blob();
         const url = URL.createObjectURL(blob);

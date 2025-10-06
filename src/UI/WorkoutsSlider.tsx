@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Link } from "react-router";
 
+const URL_ = "https://exercisedb.p.rapidapi.com";
+
 type WorkoutProps = {
   workouts: any[] | null;
 };
@@ -17,17 +19,14 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
   useEffect(() => {
     const fetchImage = async (id: string) => {
       try {
-        const res = await fetch(
-          `https://exercises11.p.rapidapi.com/images/${id}.gif`,
-          {
-            method: "GET",
-            headers: {
-              "x-rapidapi-key":
-                "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
-              "x-rapidapi-host": "exercises11.p.rapidapi.com",
-            },
-          }
-        );
+        const res = await fetch(`${URL_}/images/${id}.gif`, {
+          method: "GET",
+          headers: {
+            "x-rapidapi-key":
+              "df4967c0b8msh2d8256548a51846p17389ajsn17ef79d2ed98",
+            "x-rapidapi-host": "exercises11.p.rapidapi.com",
+          },
+        });
 
         const blob = await res.blob();
         const url = URL.createObjectURL(blob);
