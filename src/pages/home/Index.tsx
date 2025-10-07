@@ -26,6 +26,30 @@ const URL_ = "https://exercisedb.p.rapidapi.com";
 
 // nemanja.
 
+const fetchData = async <T,>(
+  endpoint: string,
+  setter: React.Dispatch<React.SetStateAction<T>>,
+  customError?: string
+) => {
+  const options = {
+    method: "GET",
+    headers: {
+      "x-rapidapi-key": import.meta.env.VITE_RAPID_API_KEY,
+      "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+    },
+  };
+
+  try {
+    const response = await fetch(`${URL_}${endpoint}`, options);
+    if (!response.ok) throw new Error(customError || "Something went wrong.");
+    const data = await response.json();
+
+    setter(data as T);
+  } catch (error: any) {
+    toast.error(error?.message || "Failed to fetch data.");
+  }
+};
+
 function Home() {
   type WorkoutsObject = {
     bodyPart: string;
@@ -54,105 +78,27 @@ function Home() {
   };
 
   useEffect(() => {
-    const fetchPost = async () => {
-      const url: string = `${URL_}/exercises/bodyPartList`;
-      const options = {
-        method: "GET",
-        headers: {
-          "x-rapidapi-key": import.meta.env.VITE_RAPID_API_KEY,
-          "x-rapidapi-host": "exercisedb.p.rapidapi.com",
-        },
-      };
-
-      try {
-        const response = await fetch(url, options);
-        const posts = await response.json();
-        setWorkoutList(posts);
-      } catch (error) {}
-    };
-
-    fetchPost();
+    fetchData<string[]>("/exercises/bodyPartList", setWorkoutList);
   }, []);
 
   useEffect(() => {
-    const fetchPost = async () => {
-      const url: string = `${URL_}/exercises`;
-      const options = {
-        method: "GET",
-        headers: {
-          "x-rapidapi-key": import.meta.env.VITE_RAPID_API_KEY,
-          "x-rapidapi-host": "exercisedb.p.rapidapi.com",
-        },
-      };
-
-      try {
-        const response = await fetch(url, options);
-        const posts = await response.json();
-        setWorkouts(posts);
-      } catch (error) {
-        toast.error("Something went wrong...");
-      }
-    };
-
-    fetchPost();
+    fetchData<any[]>("/exercises", setWorkouts);
   }, []);
 
   useEffect(() => {
     if (activeFilter === "") return;
-
-    const fetchPost = async () => {
-      const url: string = `${URL_}/exercises/bodyPart/${activeFilter}`;
-      const options = {
-        method: "GET",
-        headers: {
-          "x-rapidapi-key": import.meta.env.VITE_RAPID_API_KEY,
-          "x-rapidapi-host": "exercisedb.p.rapidapi.com",
-        },
-      };
-
-      try {
-        const response = await fetch(url, options);
-        const posts = await response.json();
-        setWorkouts(posts);
-      } catch (error) {
-        toast.error("Something went wrong...");
-      }
-    };
-
-    fetchPost();
+    fetchData<any[]>(`/exercises/bodyPart/${activeFilter}`, setWorkouts);
   }, [activeFilter]);
 
   function searchByInput() {
     if (searchFilter === "") return;
 
-    const fetchPost = async () => {
-      const url: string = `${URL_}/exercises/bodyPart/${searchFilter}`;
-      const options = {
-        method: "GET",
-        headers: {
-          "x-rapidapi-key":
-            "37b9fbdafamsh38ae9b00f9888abp1cb0e5jsn54745baf4c79",
-          "x-rapidapi-host": "exercisedb.p.rapidapi.com",
-        },
-      };
-
-      try {
-        const response = await fetch(url, options);
-        if (!response.ok) {
-          throw new Error(`No exercises found for "${searchFilter}".`);
-        }
-        const posts = await response.json();
-        if (!posts || posts.length === 0) {
-          throw new Error(`No results found for "${searchFilter}".`);
-        }
-        setWorkouts(posts);
-      } catch (error: any) {
-        toast.error(error.message);
-      }
-    };
-
+    fetchData<any[]>(
+      `/exercises/bodyPart/${searchFilter}`,
+      setWorkouts,
+      `No exercises found for "${searchFilter}".`
+    );
     setSearchFilter("");
-    fetchPost();
   }
 
   return (

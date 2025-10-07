@@ -259,3 +259,108 @@ const WorkoutsSlider = ({ workouts }: WorkoutProps) => {
 
 export default WorkoutsSlider;
 ```
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+```// useEffect(() => {
+  //   const fetchPost = async () => {
+  //     const url: string = `${URL_}/exercises/bodyPartList`;
+  //     const options = {
+  //       method: "GET",
+  //       headers: {
+  //         "x-rapidapi-key": import.meta.env.VITE_RAPID_API_KEY,
+  //         "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+  //       },
+  //     };
+
+  //     try {
+  //       const response = await fetch(url, options);
+  //       const posts = await response.json();
+  //       setWorkoutList(posts);
+  //     } catch (error) {}
+  //   };
+
+  //   fetchPost();
+  // }, []);
+
+  // useEffect(() => {
+  //   const fetchPost = async () => {
+  //     const url: string = `${URL_}/exercises`;
+  //     const options = {
+  //       method: "GET",
+  //       headers: {
+  //         "x-rapidapi-key": import.meta.env.VITE_RAPID_API_KEY,
+  //         "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+  //       },
+  //     };
+
+  //     try {
+  //       const response = await fetch(url, options);
+  //       const posts = await response.json();
+  //       setWorkouts(posts);
+  //     } catch (error) {
+  //       toast.error("Something went wrong...");
+  //     }
+  //   };
+
+  //   fetchPost();
+  // }, []);
+
+  // useEffect(() => {
+  //   if (activeFilter === "") return;
+
+  //   const fetchPost = async () => {
+  //     const url: string = `${URL_}/exercises/bodyPart/${activeFilter}`;
+  //     const options = {
+  //       method: "GET",
+  //       headers: {
+  //         "x-rapidapi-key": import.meta.env.VITE_RAPID_API_KEY,
+  //         "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+  //       },
+  //     };
+
+  //     try {
+  //       const response = await fetch(url, options);
+  //       const posts = await response.json();
+  //       setWorkouts(posts);
+  //     } catch (error) {
+  //       toast.error("Something went wrong...");
+  //     }
+  //   };
+
+  //   fetchPost();
+  // }, [activeFilter]);
+
+  // function searchByInput() {
+  //   if (searchFilter === "") return;
+
+  //   const fetchPost = async () => {
+  //     const url: string = `${URL_}/exercises/bodyPart/${searchFilter}`;
+  //     const options = {
+  //       method: "GET",
+  //       headers: {
+  //         "x-rapidapi-key":
+  //           "37b9fbdafamsh38ae9b00f9888abp1cb0e5jsn54745baf4c79",
+  //         "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+  //       },
+  //     };
+
+  //     try {
+  //       const response = await fetch(url, options);
+  //       if (!response.ok) {
+  //         throw new Error(`No exercises found for "${searchFilter}".`);
+  //       }
+  //       const posts = await response.json();
+  //       if (!posts || posts.length === 0) {
+  //         throw new Error(`No results found for "${searchFilter}".`);
+  //       }
+  //       setWorkouts(posts);
+  //     } catch (error: any) {
+  //       toast.error(error.message);
+  //     }
+  //   };
+
+  //   setSearchFilter("");
+  //   fetchPost();
+  // }
+```
