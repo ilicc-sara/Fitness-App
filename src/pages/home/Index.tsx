@@ -6,8 +6,28 @@ import { ToastContainer, toast } from "react-toastify";
 
 const URL_ = "https://exercisedb.p.rapidapi.com";
 
-function Index() {
-  const [workoutList, setWorkoutList] = useState<string[] | null>(null);
+// type Student = {
+//   name: string;
+//   lastName: string;
+//   scores: {
+//     history: number;
+//     sports: number;
+//   };
+// };
+
+// const nemanja: Student = {
+//   name: "Nemanja",
+//   lastName: "Malesija",
+//   scores: {
+//     history: 10,
+//     // sports: 10,
+//   },
+// };
+
+// nemanja.
+
+function Home() {
+  const [workoutList, setWorkoutList] = useState<string[]>([]);
   const [workouts, setWorkouts] = useState<any[] | null>(null);
   const [activeFilter, setActiveFilter] = useState<null | string>(null);
   const [searchFilter, setSearchFilter] = useState<string>("");
@@ -22,7 +42,7 @@ function Index() {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const url: string = `${URL}/exercises/bodyPartList`;
+      const url: string = `${URL_}/exercises/bodyPartList`;
       const options = {
         method: "GET",
         headers: {
@@ -189,4 +209,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default Home;
