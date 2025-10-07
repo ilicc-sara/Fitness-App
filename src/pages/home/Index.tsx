@@ -29,7 +29,7 @@ const URL_ = "https://exercisedb.p.rapidapi.com";
 function Home() {
   const [workoutList, setWorkoutList] = useState<string[]>([]);
   const [workouts, setWorkouts] = useState<any[] | null>(null);
-  const [activeFilter, setActiveFilter] = useState<null | string>(null);
+  const [activeFilter, setActiveFilter] = useState<string>("");
   const [searchFilter, setSearchFilter] = useState<string>("");
 
   const workoutsRef = useRef<HTMLElement | null>(null);
@@ -46,8 +46,7 @@ function Home() {
       const options = {
         method: "GET",
         headers: {
-          "x-rapidapi-key":
-            "37b9fbdafamsh38ae9b00f9888abp1cb0e5jsn54745baf4c79",
+          "x-rapidapi-key": import.meta.env.VITE_RAPID_API_KEY,
           "x-rapidapi-host": "exercisedb.p.rapidapi.com",
         },
       };
@@ -68,8 +67,7 @@ function Home() {
       const options = {
         method: "GET",
         headers: {
-          "x-rapidapi-key":
-            "37b9fbdafamsh38ae9b00f9888abp1cb0e5jsn54745baf4c79",
+          "x-rapidapi-key": import.meta.env.VITE_RAPID_API_KEY,
           "x-rapidapi-host": "exercisedb.p.rapidapi.com",
         },
       };
@@ -87,15 +85,14 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    if (!activeFilter) return;
+    if (activeFilter === "") return;
 
     const fetchPost = async () => {
       const url: string = `${URL_}/exercises/bodyPart/${activeFilter}`;
       const options = {
         method: "GET",
         headers: {
-          "x-rapidapi-key":
-            "37b9fbdafamsh38ae9b00f9888abp1cb0e5jsn54745baf4c79",
+          "x-rapidapi-key": import.meta.env.VITE_RAPID_API_KEY,
           "x-rapidapi-host": "exercisedb.p.rapidapi.com",
         },
       };

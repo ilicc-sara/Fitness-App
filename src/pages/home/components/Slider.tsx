@@ -1,9 +1,9 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 type WorkoutProps = {
-  workoutList: string[] | null;
-  activeFilter: string | null;
-  setActiveFilter: React.Dispatch<React.SetStateAction<string | null>>;
+  workoutList: string[];
+  activeFilter: string;
+  setActiveFilter: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const Slider = ({
@@ -23,8 +23,10 @@ const Slider = ({
       <SplideSlide>
         <div className="flex justify-between !mx-12">
           <div
-            onClick={() => setActiveFilter(null)}
-            style={{ border: `${!activeFilter ? "2px solid red" : "none"}` }}
+            onClick={() => setActiveFilter("")}
+            style={{
+              border: `${activeFilter === "" ? "2px solid red" : "none"}`,
+            }}
             className="!my-14 flex flex-col items-center justify-center h-48 aspect-square bg-white text-center gap-5 hover:scale-110 transition-transform duration-300"
           >
             <img className="h-12 " src="./gym-icon.png" />
