@@ -6,12 +6,18 @@ import { ToastContainer, toast } from "react-toastify";
 const URL_ = "https://exercisedb.p.rapidapi.com";
 
 function SingleWorkout() {
-  const params = useParams();
-  const [workout, setWorkout] = useState<WorkoutObject | null>(null);
-  const [imageUrl, setImageUrl] = useState<string>("");
-  const [similarExercise, setSimilarExercise] = useState<null | string>(null);
-  const [workouts, setWorkouts] = useState<any[] | null>(null);
-  const [videos, setVideos] = useState<any[] | null>(null);
+  type WorkoutsObject = {
+    bodyPart: string;
+    equipment: string;
+    id: string;
+    name: string;
+    target: string;
+    secondaryMuscles: string[];
+    instructions: string[];
+    description: string;
+    difficulty: string;
+    category: string;
+  };
 
   type WorkoutObject = {
     name: string;
@@ -24,6 +30,31 @@ function SingleWorkout() {
     secondaryMuscles: string[];
     target: string;
   };
+
+  type VideoData = {
+    video: {
+      channelId: string;
+      channelName: string;
+      description: string;
+      lengthText: string;
+      publishedTimeText: string;
+      thumbnails: {
+        height: number;
+        url: string;
+        width: number;
+      }[];
+      title: string;
+      videoId: string;
+      viewCountText: string;
+    };
+  };
+
+  const params = useParams();
+  const [workout, setWorkout] = useState<WorkoutObject>(Object);
+  const [imageUrl, setImageUrl] = useState<string>("");
+  const [similarExercise, setSimilarExercise] = useState<string>("");
+  const [workouts, setWorkouts] = useState<WorkoutsObject[]>([]);
+  const [videos, setVideos] = useState<VideoData[]>([]);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -104,7 +135,7 @@ function SingleWorkout() {
   }, []);
 
   useEffect(() => {
-    if (!similarExercise) return;
+    if (similarExercise === "") return;
 
     const fetchPost = async () => {
       const url: string = `${URL_}/exercises/bodyPart/${similarExercise}`;

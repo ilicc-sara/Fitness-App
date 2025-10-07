@@ -27,7 +27,7 @@ const URL_ = "https://exercisedb.p.rapidapi.com";
 // nemanja.
 
 function Home() {
-  type WorkoutObject = {
+  type WorkoutsObject = {
     bodyPart: string;
     equipment: string;
     id: string;
@@ -41,7 +41,7 @@ function Home() {
   };
 
   const [workoutList, setWorkoutList] = useState<string[]>([]);
-  const [workouts, setWorkouts] = useState<WorkoutObject[]>([]);
+  const [workouts, setWorkouts] = useState<WorkoutsObject[]>([]);
   const [activeFilter, setActiveFilter] = useState<string>("");
   const [searchFilter, setSearchFilter] = useState<string>("");
 

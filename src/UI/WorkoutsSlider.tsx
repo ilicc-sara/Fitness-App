@@ -4,8 +4,21 @@ import { Link } from "react-router";
 
 const URL_ = "https://exercisedb.p.rapidapi.com";
 
+type WorkoutsObject = {
+  bodyPart: string;
+  equipment: string;
+  id: string;
+  name: string;
+  target: string;
+  secondaryMuscles: string[];
+  instructions: string[];
+  description: string;
+  difficulty: string;
+  category: string;
+};
+
 type WorkoutProps = {
-  workouts: any[] | null;
+  workouts: WorkoutsObject[];
 };
 
 type Image = {
